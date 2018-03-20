@@ -1,6 +1,11 @@
 //--VARIABLES----------------------------------------------
-var width = window.innerWidth;
-var height = window.innerHeight;
+var divRecuadro = $( "#recuadro" );
+
+//var width = window.innerWidth;
+//var height = window.innerHeight;
+var width = divRecuadro.width();
+var height = divRecuadro.height();
+
 var stage = new Konva.Stage({
 	container: 'recuadro',
 	width: width,
@@ -24,6 +29,8 @@ var imageObj;
 //--FUNCIONES----------------------------------------------
 
 function drawPuntos(){
+	var divRecuadro_pos = $( "#recuadro" ).position();
+
 	//imagen de un punto
 	imageObj = new Image();
 	imageObj.src = "cuadrado.jpg";
@@ -32,38 +39,42 @@ function drawPuntos(){
 	//los 4 puntos
 	punto1 = new Konva.Image({
 		image: imageObj,
-		x: 0 + imageObj.x,
-		y: stage.getHeight() - imageObj.y,
-		width: 50,
-		height: 50,
-		draggable: true
+		x: divRecuadro_pos.left,
+		y: divRecuadro_pos.top,
+		width: imageObj.width,
+		height: imageObj.height,
+		draggable: true,
+		name: "punto1"
 	});
 
 	punto2 = new Konva.Image({
 		image: imageObj,
-		x: 0 + imageObj.x,
-		y: 0 + imageObj.y,
-		width: 50,
-		height: 50,
-		draggable: true
+		x: divRecuadro_pos.left,
+		y: divRecuadro_pos.top + stage.getHeight() - imageObj.height - 16,
+		width: imageObj.width,
+		height: imageObj.height,
+		draggable: true,
+		name: "punto2"
 	});
 
 	punto3 = new Konva.Image({
 		image: imageObj,
-		x: stage.getWidth() - imageObj.x,
-		y: 0 + imageObj.y,
-		width: 50,
-		height: 50,
-		draggable: true
+		x: divRecuadro_pos.left + stage.getWidth() - imageObj.width - 16,
+		y: divRecuadro_pos.top + stage.getHeight() - imageObj.height - 16,
+		width: imageObj.width,
+		height: imageObj.height,
+		draggable: true,
+		name: "punto3"
 	});
 
 	punto4 = new Konva.Image({
 		image: imageObj,
-		x: stage.getWidth() - imageObj.x,
-		y: stage.getHeight() - imageObj.y,
-		width: 50,
-		height: 50,
-		draggable: true
+		x: divRecuadro_pos.left + stage.getWidth() - imageObj.width - 16,
+		y: divRecuadro_pos.top,
+		width: imageObj.width,
+		height: imageObj.height,
+		draggable: true,
+		name: "punto4"
 	});
 
 	layer.add(punto1);
@@ -71,43 +82,11 @@ function drawPuntos(){
 	layer.add(punto3);
 	layer.add(punto4);
 
-	//stage.add(layer);
+	stage.add(layer);
 	stage.add(layer, dragLayer);
 };
 
-//evento de arrastrar punto
-stage.on('dragstart', function(evt) {
-  var shape = evt.target;
-  // moving to another layer will improve dragging performance
-  shape.moveTo(dragLayer);
-  stage.draw();
-  
-  if (tween) {
-    tween.pause();
-  }
-  shape.setAttrs({
-    shadowOffset: {
-      x: 15,
-      y: 15
-    },
-    scale: {
-      x: shape.getAttr('startScale') * 1.2,
-      y: shape.getAttr('startScale') * 1.2
-    }
-  });
-});
-
-//evento de soltar un punto
-stage.on('dragend', function(evt) {
-  var shape = evt.target;
-  shape.moveTo(layer);
-  stage.draw();
-  shape.to({
-    duration: 0.5,
-    easing: Konva.Easings.ElasticEaseOut,
-    scaleX: shape.getAttr('startScale'),
-    scaleY: shape.getAttr('startScale'),
-    shadowOffsetX: 5,
-    shadowOffsetY: 5
-  });
-});
+//evento que ocurre tras dejar de arrastrar
+stage.on("dragend", function(e){
+	alert("x: " + e.target.x() + " " + "y: " + e.target.y());
+})

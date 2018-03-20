@@ -1,6 +1,11 @@
 #recuadro {
 	background-color: #005733;
+	position: relative;
+	float: left;
 
-	height: 500px;
-    width: 500px;
+	height: 400px;
+    width: 400px;
+
+    margin-left: 300px;
+
 }
