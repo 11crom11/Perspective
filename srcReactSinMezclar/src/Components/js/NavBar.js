@@ -10,7 +10,7 @@ class NavBar extends React.Component {
             </div>
 	    	<div className="text-centerer">
 	    		<h1 className="header-text">
-	    			Perspective Patata
+	    			Perspective
 	    		</h1>
 	    	</div>
 		</nav>);

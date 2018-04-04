@@ -53,7 +53,7 @@
 }
 
 /* -- You can use this sidebar in Bootstrap (v3) projects. HTML-markup like Navbar bootstrap component will make your work easier. -- */
-// @import "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+/* @import "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";*/
 
 
 /* -- Box model ------------------------------- */
@@ -160,7 +160,7 @@ body {
   position: relative;
   margin: 0;
   padding: 0 50px;
-  .transition(all 0.5s cubic-bezier(0.55, 0, 0.1, 1));
+  /*.transition(all 0.5s cubic-bezier(0.55, 0, 0.1, 1));*/
 }
 
 // Positioning layout: default
@@ -180,17 +180,17 @@ body {
 }
 
 
-// Base variables
-// --------------------------------------------------
+/* Base variables
+ --------------------------------------------------*/
 @screen-tablet:          768px;
 
-@gray-darker:            #212121; // #212121 - text
-@gray-dark:              #757575; // #757575 - secondary text, icons
-@gray:                   #bdbdbd; // #bdbdbd - hint text
-@gray-light:             #e0e0e0; // #e0e0e0 - divider
-@gray-lighter:           #f5f5f5; // #f5f5f5 - background
+@gray-darker:            #212121; /* #212121 - text */
+@gray-dark:              #757575; /* #757575 - secondary text, icons */
+@gray:                   #bdbdbd; /* #bdbdbd - hint text */
+@gray-light:             #e0e0e0; /* #e0e0e0 - divider */
+@gray-lighter:           #f5f5f5; /* #f5f5f5 - background */
 
-// Pink Material Colors
+/* Pink Material Colors*/
 @pink-50:   #fce4ec;
 @pink-100:  #f8bbd0;
 @pink-200:  #f48fb1;
@@ -211,8 +211,8 @@ body {
 .clearfix() {
   &:before,
   &:after {
-    content: " "; // 1
-    display: table; // 2
+    content: " "; /* 1 */
+    display: table; /* 2 */
   }
   &:after {
     clear: both;
@@ -248,8 +248,8 @@ body {
 
 /* -- Sidebar style ------------------------------- */
 
-// Sidebar variables
-// --------------------------------------------------
+/* Sidebar variables
+ -------------------------------------------------- */
 @zindex-sidebar-fixed: 1035;
 
 @sidebar-desktop-width: 280px;
@@ -290,21 +290,21 @@ body {
   text-decoration: none;
   clear: both;
   font-weight: @sidebar-font-weight;
-  .text-overflow();
-  .transition(all .2s ease-in-out);
+  /*.text-overflow();
+  .transition(all .2s ease-in-out);*/
 
   &:hover, &:focus {
-    .box-shadow(none);
+    /*.box-shadow(none);*/
     outline: none;
   }
 
-  // positioning caret in sidebar block
+  /* positioning caret in sidebar block */
   .caret {
     position: absolute;
-    right: @sidebar-padding + @sidebar-badge-size/2 - 4px; // caret centered by badge position; 4px - caret width
+    right: @sidebar-padding + @sidebar-badge-size/2 - 4px; /* caret centered by badge position; 4px - caret width */
     top: @sidebar-nav-height/2;
   }
-  // positioning badge in sidebar block
+  /* positioning badge in sidebar block */
   .sidebar-badge {
     position: absolute;
     right: @sidebar-padding;
