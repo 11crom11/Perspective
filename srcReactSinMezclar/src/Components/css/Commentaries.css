@@ -1,9 +1,18 @@
-#Commentaries{
-	  margin-top: 3em;
-	  background: #fff;
-	  border-radius: 2px;
-	  height: 15em;
-	  margin: 1rem;
-	  position: relative;
-	  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+#Commentaries-box{
+	margin-top: 3em;
+	background: #fff;
+	border-radius: 2px;
+	height: 15em;
+	margin: 1rem;
+	position: relative;
+	text-align: center;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#Commentaries {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 5em;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 5em;
 }
