@@ -59,7 +59,11 @@ function drawPuntos(){
 function creacionPuntos(div_elem){
 	//imagen de un punto
 	imageObj = new Image();
-	imageObj.src = "cuadrado.png";
+	//imageObj.src = "cuadrado.png";
+	imageObj.src = "circulo.png";
+	imageObj.width = 25;
+	imageObj.height = 25;
+
 
 	//los 4 puntos
 	punto1 = new Konva.Image({
@@ -114,13 +118,13 @@ function creacionLineas(){
 		stroke: 'red',
 		strokeWidth: 5,
 		lineCap: 'round',
-		lineJoin: 'round'
+		lineJoin: 'round',
 		/*
 		* line segments with a length of 29px with a gap
 		* of 20px followed by a line segment of 0.001px (a dot)
 		* followed by a gap of 20px
 		*/
-		//dash: [29, 20, 0.001, 20]
+		dash: [29, 20, 0.001, 20]
     });
 
 	linea23 = new Konva.Line({
@@ -134,7 +138,7 @@ function creacionLineas(){
 		* of 20px followed by a line segment of 0.001px (a dot)
 		* followed by a gap of 20px
 		*/
-		dash: [33, 10]
+		dash: [29, 20, 0.001, 20]
     });
 
 	linea34 = new Konva.Line({

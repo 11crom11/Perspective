@@ -1,11 +1,15 @@
 #recuadro {
-	background-color: #005733;
+	/*background-color: #005733;*/
+	/*background-image: "ejemplo.jpg";*/
+	background-image: url("ejemplo.jpg");
+	background-size: 1000px 750px;
+	/*opacity: 0.5;*/
 	position: relative;
 	float: left;
 
-	height: 400px;
-    width: 400px;
+	height: 750px;
+    width: 1000px;
 
-    margin-left: 300px;
+    margin-left: 50px;
 
 }
