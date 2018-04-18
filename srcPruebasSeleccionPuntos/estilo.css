@@ -1,15 +1,25 @@
+.container {
+
+	position: relative;
+	    margin-left: 50px;
+}
 #recuadro {
 	/*background-color: #005733;*/
 	/*background-image: "ejemplo.jpg";*/
-	background-image: url("ejemplo.jpg");
+	position:absolute;
+	top:0;
+	left:0;
 	background-size: 1000px 750px;
 	/*opacity: 0.5;*/
-	position: relative;
 	float: left;
 
 	height: 750px;
     width: 1000px;
 
-    margin-left: 50px;
 
+}
+.container img {
+	position:absolute;
+	top:0;
+	left:0;
 }
