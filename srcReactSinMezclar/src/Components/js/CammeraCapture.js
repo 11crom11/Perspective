@@ -2,9 +2,27 @@ import React from "react";
 import '../css/CammeraCapture.css';
 
 class CammeraCapture extends React.Component {
+
+	handleSuccess(stream) {
+  		const video = document.querySelectorAll('video');
+  		video.forEach(video => {
+    		video.srcObject = stream;
+  		});
+	}
+
+	handleError(error) {
+  		console.error('Reeeejected!', error);
+	}
+
+	componentDidMount(){
+		navigator.mediaDevices.
+			getUserMedia({video: true}).
+  			then(this.handleSuccess).catch(this.handleError);
+	}
+
 	render(){
 		return (
-			<img id="camera-capture" className="img-fluid" src = "https://images.pexels.com/photos/56875/tree-dawn-nature-bucovina-56875.jpeg?auto=compress&cs=tinysrgb&h=350" />
+  			<video autoplay id="camera-capture" className="embed-responsive" ></video>
 		);
 	}
 }

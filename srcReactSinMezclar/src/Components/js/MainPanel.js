@@ -10,14 +10,14 @@ class MainPanel extends React.Component {
 				<div className="col-sm-1 col-md-1 col-lg-1 col-xl-1" >
 			    </div>
 				<div className="col-sm-10 col-md-10 col-lg-4 col-xl-4" >
-			      <TransformedImage />
+			      <CammeraCapture />
 			    </div>
 			    <div className="col-sm-1 col-md-1 col-lg-1 col-xl-1" >
 			    </div>
 			    <div className="col-sm-1 col-md-1 col-lg-1 col-xl-1" >
 			    </div>
 				<div className="col-sm-10 col-md-10 col-lg-4 col-xl-4" >
-			      <CammeraCapture />
+			      <TransformedImage />
 			    </div>
 			    <div className="col-sm-1 col-md-1 col-lg-1 col-xl-1" >
 			    </div>
