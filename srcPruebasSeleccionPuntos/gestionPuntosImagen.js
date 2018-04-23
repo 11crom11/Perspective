@@ -44,15 +44,15 @@ function drawPuntos(){
 	inicializarEstructuraCoordenadas();
 
     //Este hilo gestionará el evento de repintado de las lineas a medida que se mueven los puntos
-    Concurrent.Thread.create(actualizarLineas);	
+    Concurrent.Thread.create(actualizarLineasPuntos);	
 
 	stage.add(layer);
 	stage.add(layer, dragLayer);
 
 	//evento que ocurre tras dejar de arrastrar
 	stage.on("dragend", function(e){
-		alert(e.target.name() + " | x: " + e.target.x() + " " + "y: " + e.target.y());
-		actualizarDicCoordenadas(e.target);
+		//alert(e.target.name() + " | x: " + e.target.x() + " " + "y: " + e.target.y());
+		alert(e.target.name() + " | x: " + coordenadasDic[e.target.name()]["x"] + " " + "y: " + coordenadasDic[e.target.name()]["y"]);
 	});
 };
 
@@ -68,8 +68,8 @@ function creacionPuntos(div_elem){
 	//los 4 puntos
 	punto1 = new Konva.Image({
 		image: imageObj,
-		x: div_elem.left,
-		y: div_elem.top,
+		x: div_elem.left + imageObj.width / 2,
+		y: div_elem.top + imageObj.height / 2,
 		width: imageObj.width,
 		height: imageObj.height,
 		draggable: true,
@@ -78,8 +78,8 @@ function creacionPuntos(div_elem){
 
 	punto2 = new Konva.Image({
 		image: imageObj,
-		x: div_elem.left,
-		y: div_elem.top + stage.getHeight() - imageObj.height - 16,
+		x: div_elem.left + imageObj.width / 2,
+		y: div_elem.top + stage.getHeight() - (imageObj.height * 3/2),
 		width: imageObj.width,
 		height: imageObj.height,
 		draggable: true,
@@ -88,8 +88,8 @@ function creacionPuntos(div_elem){
 
 	punto3 = new Konva.Image({
 		image: imageObj,
-		x: div_elem.left + stage.getWidth() - imageObj.width - 16,
-		y: div_elem.top + stage.getHeight() - imageObj.height - 16,
+		x: div_elem.left + stage.getWidth() - (imageObj.width  * 3/2),
+		y: div_elem.top + stage.getHeight() - (imageObj.height * 3/2),
 		width: imageObj.width,
 		height: imageObj.height,
 		draggable: true,
@@ -98,8 +98,8 @@ function creacionPuntos(div_elem){
 
 	punto4 = new Konva.Image({
 		image: imageObj,
-		x: div_elem.left + stage.getWidth() - imageObj.width - 16,
-		y: div_elem.top,
+		x: div_elem.left + stage.getWidth() - (imageObj.width  * 3/2),
+		y: div_elem.top + imageObj.height / 2,
 		width: imageObj.width,
 		height: imageObj.height,
 		draggable: true,
@@ -177,68 +177,63 @@ function creacionLineas(){
 
 function inicializarEstructuraCoordenadas(){
 	coordenadasDic[punto1.name()] = {};
-	coordenadasDic["punto1"]["x"] = punto1.attrs.x;
-	coordenadasDic["punto1"]["y"] = punto1.attrs.y;
+	coordenadasDic["punto1"]["x"] = punto1.attrs.x + imageObj.width/2;
+	coordenadasDic["punto1"]["y"] = punto1.attrs.y + imageObj.height/2;
 	coordenadasDic[punto2.name()] = {};
-	coordenadasDic["punto2"]["x"] = punto2.attrs.x;
-	coordenadasDic["punto2"]["y"] = punto2.attrs.y;
+	coordenadasDic["punto2"]["x"] = punto2.attrs.x + imageObj.width/2;
+	coordenadasDic["punto2"]["y"] = punto2.attrs.y + imageObj.height/2;
 	coordenadasDic[punto3.name()] = {};
-	coordenadasDic["punto3"]["x"] = punto3.attrs.x;
-	coordenadasDic["punto3"]["y"] = punto3.attrs.y;
+	coordenadasDic["punto3"]["x"] = punto3.attrs.x + imageObj.width/2;
+	coordenadasDic["punto3"]["y"] = punto3.attrs.y + imageObj.height/2;
 	coordenadasDic[punto4.name()] = {};
-	coordenadasDic["punto4"]["x"] = punto4.attrs.x;
-	coordenadasDic["punto4"]["y"] = punto4.attrs.y;
+	coordenadasDic["punto4"]["x"] = punto4.attrs.x + imageObj.width/2;
+	coordenadasDic["punto4"]["y"] = punto4.attrs.y + imageObj.height/2;
 }
 
-function actualizarDicCoordenadas(target){
-	coordenadasDic[target.name()]["x"] = target.x();
-	coordenadasDic[target.name()]["y"] = target.y();
-};
-
-function actualizarLineas(){
+function actualizarLineasPuntos(){
 	punto1.on('dragmove', function () {
-		coordenadasDic[punto1.name()]["x"] = punto1.attrs.x;
-		coordenadasDic[punto1.name()]["y"] = punto1.attrs.y;
+		coordenadasDic[punto1.name()]["x"] = punto1.attrs.x + imageObj.width/2;
+		coordenadasDic[punto1.name()]["y"] = punto1.attrs.y + imageObj.height/2;
 
 
-		linea12.attrs.points = [coordenadasDic[punto1.name()]["x"] + imageObj.width/2, coordenadasDic[punto1.name()]["y"] + imageObj.height/2, coordenadasDic[punto2.name()]["x"] + imageObj.width/2, coordenadasDic[punto2.name()]["y"] + imageObj.height/2];
-		linea41.attrs.points = [coordenadasDic[punto4.name()]["x"] + imageObj.width/2, coordenadasDic[punto4.name()]["y"] + imageObj.height/2, coordenadasDic[punto1.name()]["x"] + imageObj.width/2, coordenadasDic[punto1.name()]["y"] + imageObj.height/2];
+		linea12.attrs.points = [coordenadasDic[punto1.name()]["x"], coordenadasDic[punto1.name()]["y"], coordenadasDic[punto2.name()]["x"], coordenadasDic[punto2.name()]["y"]];
+		linea41.attrs.points = [coordenadasDic[punto4.name()]["x"], coordenadasDic[punto4.name()]["y"], coordenadasDic[punto1.name()]["x"], coordenadasDic[punto1.name()]["y"]];
 
 		linea12.draw();
 		linea41.draw();
     });
 
 	punto2.on('dragmove', function () {
-		coordenadasDic[punto2.name()]["x"] = punto2.attrs.x;
-		coordenadasDic[punto2.name()]["y"] = punto2.attrs.y;
+		coordenadasDic[punto2.name()]["x"] = punto2.attrs.x + imageObj.width/2;
+		coordenadasDic[punto2.name()]["y"] = punto2.attrs.y + imageObj.height/2;
 
 
-		linea23.attrs.points = [coordenadasDic[punto2.name()]["x"] + imageObj.width/2, coordenadasDic[punto2.name()]["y"] + imageObj.height/2, coordenadasDic[punto3.name()]["x"] + imageObj.width/2, coordenadasDic[punto3.name()]["y"] + imageObj.height/2];
-		linea12.attrs.points = [coordenadasDic[punto1.name()]["x"] + imageObj.width/2, coordenadasDic[punto1.name()]["y"] + imageObj.height/2, coordenadasDic[punto2.name()]["x"] + imageObj.width/2, coordenadasDic[punto2.name()]["y"] + imageObj.height/2];
+		linea23.attrs.points = [coordenadasDic[punto2.name()]["x"], coordenadasDic[punto2.name()]["y"], coordenadasDic[punto3.name()]["x"], coordenadasDic[punto3.name()]["y"]];
+		linea12.attrs.points = [coordenadasDic[punto1.name()]["x"], coordenadasDic[punto1.name()]["y"], coordenadasDic[punto2.name()]["x"], coordenadasDic[punto2.name()]["y"]];
 
 		linea23.draw();
 		linea12.draw();
 	});
 
 	punto3.on('dragmove', function () {
-		coordenadasDic[punto3.name()]["x"] = punto3.attrs.x;
-		coordenadasDic[punto3.name()]["y"] = punto3.attrs.y;
+		coordenadasDic[punto3.name()]["x"] = punto3.attrs.x + imageObj.width/2;
+		coordenadasDic[punto3.name()]["y"] = punto3.attrs.y + imageObj.height/2;
 
 
-		linea34.attrs.points = [coordenadasDic[punto3.name()]["x"] + imageObj.width/2, coordenadasDic[punto3.name()]["y"] + imageObj.height/2, coordenadasDic[punto4.name()]["x"] + imageObj.width/2, coordenadasDic[punto4.name()]["y"] + imageObj.height/2];
-		linea23.attrs.points = [coordenadasDic[punto2.name()]["x"] + imageObj.width/2, coordenadasDic[punto2.name()]["y"] + imageObj.height/2, coordenadasDic[punto3.name()]["x"] + imageObj.width/2, coordenadasDic[punto3.name()]["y"] + imageObj.height/2];
+		linea34.attrs.points = [coordenadasDic[punto3.name()]["x"], coordenadasDic[punto3.name()]["y"], coordenadasDic[punto4.name()]["x"], coordenadasDic[punto4.name()]["y"]];
+		linea23.attrs.points = [coordenadasDic[punto2.name()]["x"], coordenadasDic[punto2.name()]["y"], coordenadasDic[punto3.name()]["x"], coordenadasDic[punto3.name()]["y"]];
 
 		linea34.draw();
 		linea23.draw();
     });
 
 	punto4.on('dragmove', function () {
-		coordenadasDic[punto4.name()]["x"] = punto4.attrs.x;
-		coordenadasDic[punto4.name()]["y"] = punto4.attrs.y;
+		coordenadasDic[punto4.name()]["x"] = punto4.attrs.x + imageObj.width/2;
+		coordenadasDic[punto4.name()]["y"] = punto4.attrs.y + imageObj.height/2;
 
 
-		linea34.attrs.points = [coordenadasDic[punto3.name()]["x"] + imageObj.width/2, coordenadasDic[punto3.name()]["y"] + imageObj.height/2, coordenadasDic[punto4.name()]["x"] + imageObj.width/2, coordenadasDic[punto4.name()]["y"] + imageObj.height/2];
-		linea41.attrs.points = [coordenadasDic[punto4.name()]["x"] + imageObj.width/2, coordenadasDic[punto4.name()]["y"] + imageObj.height/2, coordenadasDic[punto1.name()]["x"] + imageObj.width/2, coordenadasDic[punto1.name()]["y"] + imageObj.height/2];
+		linea34.attrs.points = [coordenadasDic[punto3.name()]["x"], coordenadasDic[punto3.name()]["y"], coordenadasDic[punto4.name()]["x"], coordenadasDic[punto4.name()]["y"]];
+		linea41.attrs.points = [coordenadasDic[punto4.name()]["x"], coordenadasDic[punto4.name()]["y"], coordenadasDic[punto1.name()]["x"], coordenadasDic[punto1.name()]["y"]];
 
 		linea34.draw();
 		linea41.draw();
