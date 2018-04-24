@@ -44,7 +44,7 @@
     <div>
     <div class="container">
         <div id="box">
-            <img src="board.png">
+            <img src="fdi.png">
         </div>
         <div id="marker0" class="corner"></div>
         <div id="marker2" class="corner"></div>
@@ -55,11 +55,11 @@
     <script>
 
     plus = (a) => {
-      return a+200
+      return a/10+500
     }
 
     getCorners = (srcCorners) => {
-      let [x,y] = [608,599]
+      let [x,y] = [1280, 720]
       let dstCorners = [0, 0, 0, y, x, 0, x, y];
       let perspT = PerspT(srcCorners, dstCorners);
       let p1 = perspT.transform(0,0).map(plus);
@@ -69,7 +69,7 @@
       return p1.concat(p4).concat(p2).concat(p3);
     }
 
-    corners = getCorners([358, 36, 329, 597,592, 157,580, 483 ]);
+    corners = getCorners([756, 287, 764,666, 1079,210, 1126,662]);
     console.log(corners)
 
 
