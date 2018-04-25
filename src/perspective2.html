@@ -55,12 +55,12 @@
     <script>
 
     plus = (a) => {
-      return a/10+500
+      return a/10+600
     }
 
     getCorners = (srcCorners) => {
       let [x,y] = [1280, 720]
-      let dstCorners = [0, 0, 0, y, x, 0, x, y];
+      let dstCorners = [0, 0, 0, x, x, 0, x, x];
       let perspT = PerspT(srcCorners, dstCorners);
       let p1 = perspT.transform(0,0).map(plus);
       let p2 = perspT.transform(0,y).map(plus);
