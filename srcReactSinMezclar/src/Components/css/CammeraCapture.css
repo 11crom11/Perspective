@@ -4,4 +4,20 @@
 	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 	margin: 0 auto;
 	margin-top: 6em;
+
+}
+
+#camera-capture img, #camera-capture video {
+
+	top: 0;
+	left: 0;
+	width: 100%
+}
+
+#konva {
+	position: absolute;
+	top:0;
+	left:0;
+	height: 100%;
+  width: 100%;
 }

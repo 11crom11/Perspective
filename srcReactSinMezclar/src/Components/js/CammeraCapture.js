@@ -20,9 +20,12 @@ class CammeraCapture extends React.Component {
   			then(this.handleSuccess).catch(this.handleError);
 	}
 
-	render(){
+	render(){//<video autoplay id="camera-capture" className="embed-responsive" ></video>
 		return (
-  			<video autoplay id="camera-capture" className="embed-responsive" ></video>
+			<div id="camera-capture" className="embed-responsive">
+				<img src="/board.png"></img>
+				<div id="konva"></div>
+			</div>
 		);
 	}
 }
