@@ -42,13 +42,13 @@ class TransformedImage extends React.Component {
 		}
 	}
 
-	componentDidMount(){
-		this.corners = this.getCorners([358, 36, 329, 597,592, 157,580, 483 ]);
+	reorderCorners(corners) {
+		return [corners.p1[0], corners.p1[1], corners.p2[0], corners.p2[1], corners.p3[0], corners.p3[1], corners.p4[0], corners.p4[1]]
+	}
+
+	transformCorners(corners){
+		this.corners = this.getCorners(this.reorderCorners(corners));
 		console.log(this.corners)
-		document.documentElement.style.margin="0px";
-		document.documentElement.style.padding="0px";
-		document.body.style.margin="0px";
-		document.body.style.padding="0px";
 		this.update()
 	}
 	render(){
