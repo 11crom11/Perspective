@@ -6,18 +6,68 @@ import { Stage, Layer, Rect, Text, Image } from 'react-konva';
 import Konva from 'konva';
 
 
-class Point extends React.Component {
+class Point1 extends React.Component {
   render() {
     return (
       <Rect
-			  name={this.props.name}
-        x={20}
-        y={20}
+			  name="p1"
+        x={10}
+        y={10}
         width={5}
         height={5}
         fill={'red'}
         shadowBlur={5}
-        onClick={this.handleClick}
+				draggable={true}
+      />
+    );
+  }
+}
+
+class Point2 extends React.Component {
+  render() {
+    return (
+      <Rect
+			  name="p2"
+        x={10}
+        y={590}
+        width={5}
+        height={5}
+        fill={'red'}
+        shadowBlur={5}
+				draggable={true}
+      />
+    );
+  }
+}
+
+class Point3 extends React.Component {
+  render() {
+    return (
+      <Rect
+			  name="p3"
+        x={590}
+        y={10}
+        width={5}
+        height={5}
+        fill={'red'}
+        shadowBlur={5}
+				draggable={true}
+      />
+    );
+  }
+}
+
+class Point4 extends React.Component {
+  render() {
+    return (
+      <Rect
+			  name="p4"
+        x={590}
+        y={590}
+        width={5}
+        height={5}
+        fill={'red'}
+        shadowBlur={5}
 				draggable={true}
       />
     );
@@ -78,15 +128,15 @@ class CammeraCapture extends React.Component {
 	render(){//<video autoplay id="camera-capture" className="embed-responsive" ></video>
 		return (
 			<div id="camera-capture" className="">
-				<Stage ref="stage" width="860" height="600">
+				<Stage ref="stage" width="600" height="600">
 				<Layer>
 					<Background />
 				</Layer>
         <Layer>
-          <Point name="p1" ref="p1" />
-					<Point name="p2" ref="p2" />
-					<Point name="p3" ref="p3" />
-					<Point name="p4" ref="p4" />
+          <Point1 />
+					<Point2 />
+					<Point3 />
+					<Point4 />
         </Layer>
       </Stage>
 			</div>
