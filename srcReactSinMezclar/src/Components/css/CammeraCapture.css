@@ -5,6 +5,8 @@
 	margin: 0 auto;
 	margin-top: 6em;
 	overflow: hidden;
+	width: 500px;
+	height: 500px;
 }
 
 #camera-capture img, #camera-capture video {

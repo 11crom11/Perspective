@@ -5,17 +5,18 @@ class TransformedImage extends React.Component {
 
 	corners;
 
+	state = {
+		ready: false
+	}
+
 	getCorners(srcCorners) {
-		let plus = (a) => {
-			return a+200
-		}
-		let [x,y] = [608,599]
+		let [x,y] = [500,500]
 		let dstCorners = [0, 0, 0, x, x, 0, x, x];
 		let perspT = window.PerspT(srcCorners, dstCorners);
-		let p1 = perspT.transform(0,0).map(plus);
-		let p2 = perspT.transform(0,y).map(plus);
-		let p3 = perspT.transform(x,y).map(plus);
-		let p4 = perspT.transform(x,0).map(plus);
+		let p1 = perspT.transform(0,0)
+		let p2 = perspT.transform(0,y)
+		let p3 = perspT.transform(x,y)
+		let p4 = perspT.transform(x,0)
 		return p1.concat(p4).concat(p2).concat(p3);
 	}
 
@@ -42,20 +43,29 @@ class TransformedImage extends React.Component {
 		}
 	}
 
-	reorderCorners(corners) {
+	flatCorners(corners) {
 		return [corners.p1[0], corners.p1[1], corners.p2[0], corners.p2[1], corners.p3[0], corners.p3[1], corners.p4[0], corners.p4[1]]
 	}
 
 	transformCorners(corners){
-		this.corners = this.getCorners(this.reorderCorners(corners));
-		console.log(this.corners)
+		this.setState({ready: true})
+		this.corners = this.getCorners(this.flatCorners(corners));
 		this.update()
 	}
+
+	componentDidMount() {
+		navigator.mediaDevices.
+			getUserMedia({video: true}).
+				then((stream) => {
+							document.getElementById('transformedVideo').srcObject = stream;
+				}).catch(error => console.error);
+	}
+
 	render(){
 		return (
-			<div id="transformed-image" className="container">
-        <div id="box">
-          <img src="board.png" />
+			<div id="transformed-image">
+        <div id="box" className={!this.state.ready ? 'hidden' : ''}>
+          <video id="transformedVideo" />
         </div>
         <div id="marker0" className="corner"></div>
         <div id="marker2" className="corner"></div>
