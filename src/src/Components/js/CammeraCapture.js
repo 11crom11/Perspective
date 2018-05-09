@@ -4,7 +4,149 @@ import '../css/CammeraCapture.css';
 import { render } from 'react-dom';
 import { Stage, Layer, Rect, Image } from 'react-konva';
 
-class Point1 extends React.Component {
+import imgCirc1 from '../img/circulo1.png';
+import imgCirc2 from '../img/circulo2.png';
+import imgCirc3 from '../img/circulo3.png';
+import imgCirc4 from '../img/circulo4.png';
+import iconoGitHub from '../img/github-icon.svg';
+
+class Circulo1Image extends React.Component {
+  state = {
+    image: null
+  };
+  componentDidMount() {
+    const image = new window.Image();
+    image.src = imgCirc1;
+    image.onload = () => {
+      this.setState({
+        image: image
+      })
+    }
+  }
+
+  render(){
+    return(    
+      <Image 
+        image={this.state.image}
+        name="p1"
+        x={10}
+        y={10}
+        width={25}
+        height={25}
+        shadowBlur={5}
+        draggable={true}
+
+        onDragEnd={function (){
+          alert(this.attrs.x);
+        }}
+      />) 
+  }
+}
+
+class Circulo2Image extends React.Component {
+  state = {
+    image: null
+  };
+  componentDidMount() {
+    const image = new window.Image();
+    image.src = imgCirc2;
+    image.onload = () => {
+      this.setState({
+        image: image
+      })
+    }
+  }
+
+  render(){
+    return(    
+      <Image 
+        image={this.state.image}
+        name="p2"
+        x={10}
+        y={455}
+        width={25}
+        height={25}
+        shadowBlur={5}
+        draggable={true}
+
+        onDragEnd={function (){
+        alert(this.attrs.x);
+        }}
+
+      />) 
+  }
+}
+
+class Circulo3Image extends React.Component {
+  state = {
+    image: null
+  };
+  componentDidMount() {
+    const image = new window.Image();
+    image.src = imgCirc3;
+    image.onload = () => {
+      this.setState({
+        image: image
+      })
+    }
+  }
+
+  render(){
+    return(    
+      <Image 
+        image={this.state.image}
+         name="p3"
+        x={455}
+        y={10}
+        width={25}
+        height={25}
+        shadowBlur={5}
+        draggable={true}
+
+        onDragEnd={function (){
+        alert(this.attrs.x);
+        }}
+
+      />) 
+  }
+}
+
+class Circulo4Image extends React.Component {
+  state = {
+    image: null
+  };
+  componentDidMount() {
+    const image = new window.Image();
+    image.src = imgCirc4;
+    image.onload = () => {
+      this.setState({
+        image: image
+      })
+    }
+  }
+
+  render(){
+    return(    
+      <Image 
+        image={this.state.image}
+         name="p4"
+        x={455}
+        y={455}
+        width={25}
+        height={25}
+        shadowBlur={5}
+        draggable={true}
+
+        onDragEnd={function (){
+        alert(this.attrs.x);
+        }}
+
+      />) 
+  }
+}
+
+/*class Point1 extends React.Component {
+
   render() {
     return (
       <Rect
@@ -15,7 +157,7 @@ class Point1 extends React.Component {
         height={5}
         fill={'red'}
         shadowBlur={5}
-				draggable={true}
+        draggable={true}
       />
     );
   }
@@ -70,7 +212,7 @@ class Point4 extends React.Component {
       />
     );
   }
-}
+}*/
 
 class Background extends React.Component {
   state = {
@@ -109,6 +251,8 @@ class CammeraCapture extends React.Component {
 				p4: window.p4
 			})
 		});
+
+    //this.refs.stage.node.on('dragmove', function(){alert("MEC")});
 	}
 
 	constructor(...args) {
@@ -147,10 +291,10 @@ class CammeraCapture extends React.Component {
 					/>
 				</Layer>
         <Layer>
-          <Point1 />
-					<Point2 />
-					<Point3 />
-					<Point4 />
+          <Circulo1Image />
+					<Circulo2Image />
+					<Circulo3Image />
+					<Circulo4Image />
         </Layer>
       </Stage>
 			</div>
