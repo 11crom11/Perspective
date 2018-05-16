@@ -2,7 +2,7 @@ import React from "react";
 import '../css/CammeraCapture.css';
 
 import { render } from 'react-dom';
-import { Stage, Layer, Rect, Image } from 'react-konva';
+import { Stage, Layer, Rect, Image, Line } from 'react-konva';
 
 import imgCirc1 from '../img/circulo1.png';
 import imgCirc2 from '../img/circulo2.png';
@@ -10,10 +10,37 @@ import imgCirc3 from '../img/circulo3.png';
 import imgCirc4 from '../img/circulo4.png';
 import iconoGitHub from '../img/github-icon.svg';
 
+var coordenadasDic = {};
+coordenadasDic['p1'] = {};
+coordenadasDic['p1']['x']= 10;
+coordenadasDic['p1']['y']= 10;
+coordenadasDic['p2'] = {};
+coordenadasDic['p2']['x']= 10;
+coordenadasDic['p2']['y']= 455;
+coordenadasDic['p3'] = {};
+coordenadasDic['p3']['x']= 455;
+coordenadasDic['p3']['y']= 10;
+coordenadasDic['p4'] = {};
+coordenadasDic['p4']['x']= 455;
+coordenadasDic['p4']['y']= 455;
+
+var TAMIMGCIR = 30;
+
 class Circulo1Image extends React.Component {
   state = {
     image: null
   };
+
+  linea12;
+
+  constructor(props, linea) {
+    
+    super(props)
+    
+    this.linea12 = linea;
+   
+  }
+
   componentDidMount() {
     const image = new window.Image();
     image.src = imgCirc1;
@@ -29,15 +56,20 @@ class Circulo1Image extends React.Component {
       <Image 
         image={this.state.image}
         name="p1"
-        x={10}
-        y={10}
-        width={25}
-        height={25}
+        x={coordenadasDic['p1']['x']}
+        y={coordenadasDic['p1']['y']}
+        width={TAMIMGCIR}
+        height={TAMIMGCIR}
         shadowBlur={5}
         draggable={true}
 
-        onDragEnd={function (){
-          alert(this.attrs.x);
+        onDragMove={function (){
+          /*coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
+          coordenadasDic[this.attrs.name]['y'] = this.attrs.y;
+          */
+
+          //this.linea12.actualizarLinea12();
+          //alert(Linea12.points);
         }}
       />) 
   }
@@ -62,10 +94,10 @@ class Circulo2Image extends React.Component {
       <Image 
         image={this.state.image}
         name="p2"
-        x={10}
-        y={455}
-        width={25}
-        height={25}
+        x={coordenadasDic['p2']['x']}
+        y={coordenadasDic['p2']['y']}
+        width={TAMIMGCIR}
+        height={TAMIMGCIR}
         shadowBlur={5}
         draggable={true}
 
@@ -74,6 +106,10 @@ class Circulo2Image extends React.Component {
         }}
 
       />) 
+  }
+
+  actualizarLinea12(){
+    this.forceUpdate();
   }
 }
 
@@ -96,10 +132,10 @@ class Circulo3Image extends React.Component {
       <Image 
         image={this.state.image}
          name="p3"
-        x={455}
-        y={10}
-        width={25}
-        height={25}
+        x={coordenadasDic['p3']['x']}
+        y={coordenadasDic['p3']['y']}
+        width={TAMIMGCIR}
+        height={TAMIMGCIR}
         shadowBlur={5}
         draggable={true}
 
@@ -129,11 +165,11 @@ class Circulo4Image extends React.Component {
     return(    
       <Image 
         image={this.state.image}
-         name="p4"
-        x={455}
-        y={455}
-        width={25}
-        height={25}
+        name="p4"
+        x={coordenadasDic['p4']['x']}
+        y={coordenadasDic['p4']['y']}
+        width={TAMIMGCIR}
+        height={TAMIMGCIR}
         shadowBlur={5}
         draggable={true}
 
@@ -144,6 +180,91 @@ class Circulo4Image extends React.Component {
       />) 
   }
 }
+
+class Linea12 extends React.Component {
+
+  render(){
+    return (
+      <Line
+        points={[
+        (coordenadasDic['p1']['x'] + TAMIMGCIR/2), 
+        (coordenadasDic['p1']['y'] + TAMIMGCIR/2),
+        (coordenadasDic['p2']['x'] + TAMIMGCIR/2),
+        (coordenadasDic['p2']['y'] + TAMIMGCIR/2)]
+        }
+        stroke={'red'}
+        strokeWidth={5}
+        lineCap={'round'}
+        lineJoin={'round'}
+        dash={[29, 20, 0.001, 20]}
+
+        />)
+  }
+}
+
+class Linea24 extends React.Component {
+
+  render(){
+    return (
+      <Line
+        points={[
+        (coordenadasDic['p2']['x'] + TAMIMGCIR/2), 
+        (coordenadasDic['p2']['y'] + TAMIMGCIR/2),
+        (coordenadasDic['p4']['x'] + TAMIMGCIR/2),
+        (coordenadasDic['p4']['y'] + TAMIMGCIR/2)]
+        }
+        stroke={'red'}
+        strokeWidth={5}
+        lineCap={'round'}
+        lineJoin={'round'}
+        dash={[29, 20, 0.001, 20]}
+
+        />)
+  }
+}
+
+class Linea43 extends React.Component {
+
+  render(){
+    return (
+      <Line
+        points={[
+        (coordenadasDic['p4']['x'] + TAMIMGCIR/2), 
+        (coordenadasDic['p4']['y'] + TAMIMGCIR/2),
+        (coordenadasDic['p3']['x'] + TAMIMGCIR/2),
+        (coordenadasDic['p3']['y'] + TAMIMGCIR/2)]
+        }
+        stroke={'red'}
+        strokeWidth={5}
+        lineCap={'round'}
+        lineJoin={'round'}
+        dash={[29, 20, 0.001, 20]}
+
+        />)
+  }
+}
+
+class Linea31 extends React.Component {
+
+  render(){
+    return (
+      <Line
+        points={[
+        (coordenadasDic['p3']['x'] + TAMIMGCIR/2), 
+        (coordenadasDic['p3']['y'] + TAMIMGCIR/2),
+        (coordenadasDic['p1']['x'] + TAMIMGCIR/2),
+        (coordenadasDic['p1']['y'] + TAMIMGCIR/2)]
+        }
+        stroke={'red'}
+        strokeWidth={5}
+        lineCap={'round'}
+        lineJoin={'round'}
+        dash={[29, 20, 0.001, 20]}
+
+        />)
+  }
+}
+
 
 /*class Point1 extends React.Component {
 
@@ -291,10 +412,16 @@ class CammeraCapture extends React.Component {
 					/>
 				</Layer>
         <Layer>
-          <Circulo1Image />
+          <Linea12 />
+          <Linea24 />
+          <Linea43 />
+          <Linea31 />
+
+          <Circulo1Image linea={<Linea12 />}/>
 					<Circulo2Image />
 					<Circulo3Image />
 					<Circulo4Image />
+
         </Layer>
       </Stage>
 			</div>
