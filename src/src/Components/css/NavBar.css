@@ -1,7 +1,19 @@
-.text-centerer {
-	text-align: left;
+.red-circle {
+	background-color: red;
+	margin-top: 0em;
+	width: 2em;
+	height: 2em;
+	border-radius: 1.5em;
 }
 
-.header-text {
-	color: white;
+
+.gray-circle {
+	background-color: #6F6F6F;
+	margin-top: 0em;
+	width: 2em;
+	height: 2em;
+	border-radius: 1em;
 }
+
+
+.recording-circle {}

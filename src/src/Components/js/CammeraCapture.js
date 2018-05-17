@@ -270,16 +270,16 @@ class Linea31 extends React.Component {
 
   render() {
     return (
-      <Rect
-			  name="p1"
-        x={10}
-        y={10}
-        width={5}
-        height={5}
-        fill={'red'}
-        shadowBlur={5}
-        draggable={true}
-      />
+        <Rect
+  			  name="p1"
+          x={10}
+          y={10}
+          width={5}
+          height={5}
+          fill={'red'}
+          shadowBlur={5}
+          draggable={true}
+        />
     );
   }
 }
