@@ -5,5 +5,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+
+ReactDOM.render(<Router>
+	<App /> 
+</Router>, document.getElementById('root'));
 registerServiceWorker();
