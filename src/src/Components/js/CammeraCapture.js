@@ -33,11 +33,14 @@ class Circulo1Image extends React.Component {
 
   linea12;
 
-  constructor(props, linea) {
+  myCallBackLinea12 = () => {}
+
+  constructor(props, linea, actualizar) {
     
     super(props)
     
     this.linea12 = linea;
+    this.myCallBackLinea12 = actualizar
    
   }
 
@@ -64,11 +67,12 @@ class Circulo1Image extends React.Component {
         draggable={true}
 
         onDragMove={function (){
-          /*coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
+          //alert(this.attrs.x);
+          coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
           coordenadasDic[this.attrs.name]['y'] = this.attrs.y;
-          */
+          
 
-          //this.linea12.actualizarLinea12();
+          //this.props.linea12.actualizarLinea12();
           //alert(Linea12.points);
         }}
       />) 
@@ -102,15 +106,15 @@ class Circulo2Image extends React.Component {
         draggable={true}
 
         onDragEnd={function (){
-        alert(this.attrs.x);
+          //alert(this.attrs.x);
+          coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
+          coordenadasDic[this.attrs.name]['y'] = this.attrs.y;
         }}
 
       />) 
   }
 
-  actualizarLinea12(){
-    this.forceUpdate();
-  }
+
 }
 
 class Circulo3Image extends React.Component {
@@ -140,7 +144,9 @@ class Circulo3Image extends React.Component {
         draggable={true}
 
         onDragEnd={function (){
-        alert(this.attrs.x);
+          //alert(this.attrs.x);
+          coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
+          coordenadasDic[this.attrs.name]['y'] = this.attrs.y;
         }}
 
       />) 
@@ -174,7 +180,9 @@ class Circulo4Image extends React.Component {
         draggable={true}
 
         onDragEnd={function (){
-        alert(this.attrs.x);
+          //alert(this.attrs.x);
+          coordenadasDic[this.attrs.name]['x'] = this.attrs.x;
+          coordenadasDic[this.attrs.name]['y'] = this.attrs.y;
         }}
 
       />) 
@@ -182,6 +190,27 @@ class Circulo4Image extends React.Component {
 }
 
 class Linea12 extends React.Component {
+
+
+  constructor(props) {
+    
+    super(props)
+    
+    this.sate = {
+      cambioCoordenadas: 0
+    };
+   
+  }
+
+  actualizarLinea12(){
+    if(this.state.cambioCoordenadas == 0){
+      this.setState({cambioCoordenadas: 1});
+    }
+    else{
+      this.setState({cambioCoordenadas: 1});
+    }
+  }
+
 
   render(){
     return (
@@ -270,16 +299,16 @@ class Linea31 extends React.Component {
 
   render() {
     return (
-        <Rect
-  			  name="p1"
-          x={10}
-          y={10}
-          width={5}
-          height={5}
-          fill={'red'}
-          shadowBlur={5}
-          draggable={true}
-        />
+      <Rect
+			  name="p1"
+        x={10}
+        y={10}
+        width={5}
+        height={5}
+        fill={'red'}
+        shadowBlur={5}
+        draggable={true}
+      />
     );
   }
 }
@@ -364,7 +393,22 @@ class CammeraCapture extends React.Component {
 		window.p3 = [480,10];
 		window.p4 = [480,480];
 		this.refs.stage.getStage().on("dragend", e => {
-			window[e.target.attrs.name] = [e.target.attrs.x, e.target.attrs.y]
+			
+      //window[e.target.attrs.name] = [e.target.attrs.x , e.target.attrs.y]
+
+      if(e.target.attrs.name === 'p1'){
+        window[e.target.attrs.name] = [e.target.attrs.x + TAMIMGCIR/2 , e.target.attrs.y + TAMIMGCIR/2];
+      }
+      else if(e.target.attrs.name === 'p2'){
+        window[e.target.attrs.name] = [e.target.attrs.x + TAMIMGCIR/2 , e.target.attrs.y - TAMIMGCIR/2];
+      }
+      else if(e.target.attrs.name === 'p3'){
+        window[e.target.attrs.name] = [e.target.attrs.x + TAMIMGCIR/2 , e.target.attrs.y + TAMIMGCIR/2];
+      }
+      else if(e.target.attrs.name === 'p4'){
+        window[e.target.attrs.name] = [e.target.attrs.x + TAMIMGCIR/2 , e.target.attrs.y - TAMIMGCIR/2];
+      }
+      
 			this.props.onPointChanged({
 				p1: window.p1,
 				p2: window.p2,
