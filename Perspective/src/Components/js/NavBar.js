@@ -56,7 +56,7 @@ class NavBar extends React.Component {
       return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/"><MdLogo size={50}/>Perspective</NavbarBrand>
+          <NavbarBrand className="logoPerspective" href="/"><MdLogo size={50}/>Perspective</NavbarBrand>
           {this.state.isRecording == false && <div className="gray-circle recording-circle" />}
           {this.state.isRecording == true && <div className="red-circle recording-circle" />}
           
