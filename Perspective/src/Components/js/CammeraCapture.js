@@ -456,11 +456,6 @@ class CammeraCapture extends React.Component {
 					/>
 				</Layer>
         <Layer>
-          <Linea12 />
-          <Linea24 />
-          <Linea43 />
-          <Linea31 />
-
           <Circulo1Image linea={<Linea12 />}/>
 					<Circulo2Image />
 					<Circulo3Image />
