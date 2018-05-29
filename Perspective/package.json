@@ -15,7 +15,7 @@
     "react-scripts": "1.1.1",
     "reactstrap": "^6.0.1"
   },
-  "homepage": "https://ivanclass.github.io/ivanclass.github.io",
+  "homepage": "https://ivanclass.github.io/ivanClass.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
